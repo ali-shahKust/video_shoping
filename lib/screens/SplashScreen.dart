@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:videoshoping/res.dart';
+import 'package:videoshoping/screens/registerandlogin/login.dart';
 import 'package:videoshoping/screens/registerandlogin/registration.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(
         Duration(seconds: 5),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => SignUp_Page())));
+            builder: (BuildContext context) => Login_page())));
   }
 
   @override

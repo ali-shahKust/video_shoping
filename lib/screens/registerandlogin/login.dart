@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
+import 'package:videoshoping/screens/homepage/HomepageMain.dart';
 
 import '../../res.dart';
 
@@ -78,7 +79,10 @@ class _Login_pageState extends State<Login_page> {
                         minWidth:double.infinity,
                         height: 50.0,
                         child: RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage_Main()));
+
+                          },
                           child: Text("LOGIN",style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
