@@ -32,7 +32,7 @@ class _Feed_pageState extends State<Feed_page> {
                   sliver: SliverGrid(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          childAspectRatio: 1.0,
+                          childAspectRatio: 0.81,
                           crossAxisSpacing: 5.0,
                           mainAxisSpacing: 10.0
                       ),
@@ -94,7 +94,7 @@ class _Feed_pageState extends State<Feed_page> {
                   borderRadius: BorderRadius.circular(16.0),
                   child: Image.asset(
                     Res.nfcap,
-                    height: 90.0,
+                    height: 130.0,
                     width: 150.0,
                   ),
                 ),
@@ -105,15 +105,9 @@ class _Feed_pageState extends State<Feed_page> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  child:ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      Res.profilepic,
-                    width: 30,
-                      height: 30,
-                    ),
-                  ),
+                    radius: 15,
+                    //  backgroundColor: Colors.white,
+                    backgroundImage: AssetImage(Res.profilepic)
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left:2.0,top: 12),
