@@ -41,9 +41,11 @@ flutter:
     - images/background.png
     - images/box.png
     - images/card.png
+    - images/livelogo.png
     - images/nfcap.png
     - images/profilepic.png
     - images/review.png
+    - images/sale.jpg
     - images/ship.png
     - images/splash.png
   # An image asset can refer to one or more resolution-specific "variants", see

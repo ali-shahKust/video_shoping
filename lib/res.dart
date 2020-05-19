@@ -3,9 +3,11 @@ class Res {
   static const String background = "images/background.png";
   static const String box = "images/box.png";
   static const String card = "images/card.png";
+  static const String livelogo = "images/livelogo.png";
   static const String nfcap = "images/nfcap.png";
   static const String profilepic = "images/profilepic.png";
   static const String review = "images/review.png";
+  static const String sale = "images/sale.jpg";
   static const String ship = "images/ship.png";
   static const String splash = "images/splash.png";
 }
