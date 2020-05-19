@@ -5,6 +5,8 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
 import 'package:videoshoping/res.dart';
+import 'package:videoshoping/screens/orders/orderhistory.dart';
+import 'package:videoshoping/screens/orders/trackorder.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -190,7 +192,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left:18.0,top:12),
-                      child: Text('My Orders',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+                      child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderHistory()));
+
+                          },
+                          child: Text('My Orders',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left:2.0,top:35),

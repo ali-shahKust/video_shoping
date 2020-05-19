@@ -6,6 +6,8 @@ import 'package:videoshoping/screens/homepage/newsfeed.dart';
 import 'package:videoshoping/screens/homepage/profile.dart';
 import 'package:videoshoping/screens/homepage/search_page.dart';
 
+import 'cart.dart';
+
 class Homepage_Main extends StatefulWidget {
   @override
   _Homepage_MainState createState() => _Homepage_MainState();
@@ -18,7 +20,7 @@ class _Homepage_MainState extends State<Homepage_Main> {
   @override
   void initState() {
     // TODO: implement initState
-    _tabs  = [Feed_page(),Inbox_Page(),Search_Page(),ProfilePage()];
+    _tabs  = [Feed_page(),Inbox_Page(),Search_Page(),Cart_page(),ProfilePage()];
 
     super.initState();
   }
@@ -35,11 +37,11 @@ class _Homepage_MainState extends State<Homepage_Main> {
           items: <Widget>[
 
             Icon(Icons.home, size: 25,color: Colors.white,),
-            Icon(Icons.help, size: 25,color: Colors.white),
+            Icon(Icons.message, size: 25,color: Colors.white),
             Icon(Icons.search,size: 25,color: Colors.white),
-            Icon(Icons.bookmark, size: 25,color: Colors.white),
-            Icon(Icons.settings, size: 25,color: Colors.white),
-            Icon(Icons.share, size: 25,color: Colors.white),
+            Icon(Icons.shopping_cart, size: 25,color: Colors.white),
+            Icon(Icons.account_circle, size: 25,color: Colors.white),
+
           ],
           onTap: (index) {
             setState(() {

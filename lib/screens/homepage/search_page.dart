@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
 import 'package:videoshoping/res.dart';
 
+import 'Product_details.dart';
+
 class Search_Page extends StatefulWidget {
   @override
   _Search_PageState createState() => _Search_PageState();
@@ -225,6 +227,38 @@ class _Search_PageState extends State<Search_Page> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(left:18.0,top:12),
+            child: Text('Popular Products',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+          ),
+          SizedBox(height: 25,),
+          Container(
+            height: 350,
+            width: 250,
+            child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: <Widget>[
+
+                SliverPadding(
+                  padding: const EdgeInsets.all(8.0),
+                  sliver: SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.81,
+                          crossAxisSpacing: 5.0,
+                          mainAxisSpacing: 10.0
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        _buildCategoryItem,
+                        childCount: 10,
+
+                      )
+
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -301,7 +335,10 @@ class _Search_PageState extends State<Search_Page> {
                               //  backgroundColor: Colors.white,
                               backgroundImage: AssetImage(Res.livelogo)
                           ),
-                          Text('Live',style: TextStyle(color: Colors.white),),
+                          Padding(
+                            padding: const EdgeInsets.only(left:5.0),
+                            child: Text('Live',style: TextStyle(color: Colors.white),),
+                          ),
 
                         ],
                       ),
@@ -313,18 +350,95 @@ class _Search_PageState extends State<Search_Page> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top:115.0,left: 8),
+            padding: const EdgeInsets.only(top:125.0,left: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text('Beer Honey Shirt',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.white),),
-                Text('Lorem Ipsum is simply dummy text of the printing \nand typesetting industry. Lorem Ipsum has\nbeen the industry',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 10,color: Colors.white),),
-
+                Container(
+                    height: 50,
+                    width: 200,
+                    child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 10,color: Colors.white60),)),
               ],
             ),
           )
         ],
       ),
+    );
+  }
+
+  Widget _buildCategoryItem(BuildContext context, int index) {
+
+    return MaterialButton(
+        elevation: 1.0,
+        highlightElevation: 1.0,
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Product_details()));
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Constant.appColor,
+        textColor: Colors.black87,
+        child: Container(
+          color: Constant.appColor,
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  FaIcon(FontAwesomeIcons.heart,size: 18.0,color: Colors.white),
+                  Padding(
+                    padding: const EdgeInsets.only(left:8.0),
+                    child: Text('1234',style: TextStyle(fontSize: 11,color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:25.0),
+                    child: FaIcon(FontAwesomeIcons.eye,size: 18.0,color: Colors.white),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:8.0),
+                    child: Text('1234',style: TextStyle(fontSize: 11,color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child:ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.asset(
+                      Res.nfcap,
+                      height: 130.0,
+                      width: 150.0,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CircleAvatar(
+                      radius: 15,
+                      //  backgroundColor: Colors.white,
+                      backgroundImage: AssetImage(Res.profilepic)
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:2.0,top: 12),
+                    child: Text('NF Real Music',style: TextStyle(fontSize: 11,color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:5.0,top: 10),
+                    child: FaIcon(FontAwesomeIcons.shoppingCart,size: 16.0,color: Colors.white),
+                  ),
+                ],
+              )
+            ],
+          ),
+        )
     );
   }
 }

@@ -19,6 +19,7 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   flutter_custom_clippers: ^1.1.1
   cached_network_image: ^2.2.0+1
+  flutter_counter: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -38,16 +39,19 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/amazon.png
     - images/background.png
     - images/box.png
     - images/card.png
     - images/livelogo.png
     - images/nfcap.png
+    - images/paypal.png
     - images/profilepic.png
     - images/review.png
     - images/sale.jpg
     - images/ship.png
     - images/splash.png
+    - images/visa.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
