@@ -297,7 +297,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(left:18.0,top:12),
-                        child: Text('My Orders',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+                        child: Text('My Service',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
                       ),
                       SizedBox(
                         height: 10,
