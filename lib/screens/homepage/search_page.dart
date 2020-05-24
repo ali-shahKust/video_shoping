@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
 import 'package:videoshoping/res.dart';
+import 'package:videoshoping/screens/homepage/online_stream.dart';
 
 import 'Product_details.dart';
 
@@ -296,10 +297,15 @@ class _Search_PageState extends State<Search_Page> {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: <Widget>[
-          Image.asset(
-            Res.nfcap,
-            height: 250.0,
-            width: 250.0,
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Online_Stream()));
+            },
+            child: Image.asset(
+              Res.nfcap,
+              height: 250.0,
+              width: 250.0,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(18.0),
