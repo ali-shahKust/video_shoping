@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:videoshoping/res.dart';
+import 'package:videoshoping/screens/homepage/HomepageMain.dart';
 import 'package:videoshoping/screens/registerandlogin/login.dart';
 import 'package:videoshoping/screens/registerandlogin/registration.dart';
 
@@ -23,9 +24,9 @@ class _SplashScreenState extends State<SplashScreen>
     rotationController.forward(from: 0.0); // it starts the animation
     super.initState();
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 2),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Login_page())));
+            builder: (BuildContext context) => Homepage_Main())));
   }
 
   @override

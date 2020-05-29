@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:video_player/video_player.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
 import 'package:videoshoping/res.dart';
 import 'package:videoshoping/screens/homepage/online_stream.dart';
@@ -13,6 +14,25 @@ class Search_Page extends StatefulWidget {
 }
 
 class _Search_PageState extends State<Search_Page> {
+
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  void initState() {
+//    _controller = VideoPlayerController.network(
+//        "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
+    _controller = VideoPlayerController.asset("assets/videos/vid3.mp4");
+    _initializeVideoPlayerFuture = _controller.initialize();
+    _controller.setLooping(true);
+    _controller.setVolume(1.0);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +65,7 @@ class _Search_PageState extends State<Search_Page> {
             ),
           ),
           SizedBox(
-            height: 25,
+            height: 5,
           ),
           Padding(
             padding: const EdgeInsets.only(bottom:18.0),
@@ -85,40 +105,48 @@ class _Search_PageState extends State<Search_Page> {
             ),
           ),
           SizedBox(height: 25,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      Res.sale,
-                      height: 150.0,
-                      width: 150.0,
-                    ),
+          Padding(
+            padding: const EdgeInsets.only(bottom:18.0),
+            child: Container(
+              height: 200,
+              width: 320,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Constant.appColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    offset: Offset(0.0, 1.0), //(x,y)
+                    blurRadius: 6.0,
                   ),
-                ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      Res.sale,
-                      height: 150.0,
-                      width: 150.0,
-                    ),
-                  ),
-                ),
-              )
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
 
-            ],
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 2,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buildHorizontalbanner(context, index);
+                        }),
+                  ),
+                ],
+              ),
+            ),
           ),
-          SizedBox(height: 25,),
+          SizedBox(height: 5,),
+          Padding(
+            padding: const EdgeInsets.only(left:18.0,top:12),
+            child: Text('Shop Live',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -135,7 +163,7 @@ class _Search_PageState extends State<Search_Page> {
                     padding: EdgeInsets.all(8.0),
                     onPressed: () {},
                     child: Text(
-                      "Live Today",
+                      "Live",
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -152,11 +180,11 @@ class _Search_PageState extends State<Search_Page> {
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Constant.appColor)),
                     color: Colors.grey,
-                    textColor: Colors.white60,
+                    textColor: Colors.white,
                     padding: EdgeInsets.all(8.0),
                     onPressed: () {},
                     child: Text(
-                      "Replay Past",
+                      "Replay",
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -173,11 +201,11 @@ class _Search_PageState extends State<Search_Page> {
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Constant.appColor)),
                     color: Colors.grey,
-                    textColor: Colors.white60,
+                    textColor: Colors.white,
                     padding: EdgeInsets.all(8.0),
                     onPressed: () {},
                     child: Text(
-                      "Upcoming Live",
+                      "Upcoming",
                       style: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -187,7 +215,7 @@ class _Search_PageState extends State<Search_Page> {
               ),
             ],
           ),
-          SizedBox(height: 25,),
+          SizedBox(height: 5,),
           Padding(
             padding: const EdgeInsets.only(bottom:18.0),
             child: Container(
@@ -198,7 +226,7 @@ class _Search_PageState extends State<Search_Page> {
                 color: Constant.appColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey,
+                    color: Constant.appColor,
                     offset: Offset(0.0, 1.0), //(x,y)
                     blurRadius: 6.0,
                   ),
@@ -288,6 +316,27 @@ class _Search_PageState extends State<Search_Page> {
             ),
           ),
         ),
+
+      ],
+    );
+  }
+  Widget buildHorizontalbanner(BuildContext context, int index) {
+    return Stack(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                Res.sale,
+                height: 200.0,
+                width: 350.0,
+              ),
+            ),
+          ),
+        ),
+
 
       ],
     );
@@ -409,19 +458,40 @@ class _Search_PageState extends State<Search_Page> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child:ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset(
-                      Res.nfcap,
-                      height: 130.0,
-                      width: 150.0,
+              Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 100,
+                    height: 100,
+                    child: FutureBuilder(
+                      future: _initializeVideoPlayerFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return Center(
+                            child: AspectRatio(
+                              aspectRatio: _controller.value.aspectRatio,
+                              child: VideoPlayer(_controller),
+                            ),
+                          );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      },
                     ),
                   ),
-                ),
+                  CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: AssetImage(Res.playicon)
+                  ),
+
+                ],
+
               ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

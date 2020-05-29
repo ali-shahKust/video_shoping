@@ -231,28 +231,28 @@ class _Login_pageState extends State<Login_page> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Material(
-              elevation: 2.0,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: TextField(
-                obscureText: true,
-
-                onChanged: (String value) {},
-                decoration: InputDecoration(
-                    hintText: "Password",
-
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child:FaIcon(FontAwesomeIcons.eyeSlash,size: 18.0,),
-                    ),
-                    border: InputBorder.none,
-                    contentPadding:
-                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
-              ),
-            ),
-          ),
+//          Padding(
+//            padding: const EdgeInsets.all(10.0),
+//            child: Material(
+//              elevation: 2.0,
+//              borderRadius: BorderRadius.all(Radius.circular(10)),
+//              child: TextField(
+//                obscureText: true,
+//
+//                onChanged: (String value) {},
+//                decoration: InputDecoration(
+//                    hintText: "Password",
+//
+//                    suffixIcon: Padding(
+//                      padding: const EdgeInsets.only(top: 8.0),
+//                      child:FaIcon(FontAwesomeIcons.eyeSlash,size: 18.0,),
+//                    ),
+//                    border: InputBorder.none,
+//                    contentPadding:
+//                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+//              ),
+//            ),
+//          ),
         ],
       ),
     );

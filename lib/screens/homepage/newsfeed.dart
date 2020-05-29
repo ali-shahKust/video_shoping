@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:video_player/video_player.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
 import 'package:videoshoping/res.dart';
 import 'package:videoshoping/screens/homepage/Product_details.dart';
@@ -11,6 +12,29 @@ class Feed_page extends StatefulWidget {
 }
 
 class _Feed_pageState extends State<Feed_page> {
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+  final List<String> vids= [
+    'assets/videos/vid1.mp4',
+        'assets/videos/vid2.mp4',
+    'assets/videos/vid3.mp4',
+        'assets/videos/vid4.mp4'
+  ];
+  @override
+  void initState() {
+//    _controller = VideoPlayerController.network(
+//        "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
+    _controller = VideoPlayerController.asset(vids[1],);
+    _initializeVideoPlayerFuture = _controller.initialize();
+    _controller.setLooping(true);
+    _controller.setVolume(1.0);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +62,7 @@ class _Feed_pageState extends State<Feed_page> {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         _buildCategoryItem,
-                        childCount: 10,
+                        childCount: vids.length,
 
                       )
 
@@ -53,10 +77,14 @@ class _Feed_pageState extends State<Feed_page> {
 
   Widget _buildCategoryItem(BuildContext context, int index) {
 
+
+
+
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 1.0,
         onPressed: () {
+
         Navigator.push(context, MaterialPageRoute(builder: (context)=>Product_details()));
         },
       shape: RoundedRectangleBorder(
@@ -87,18 +115,38 @@ class _Feed_pageState extends State<Feed_page> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child:ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: Image.asset(
-                    Res.nfcap,
-                    height: 130.0,
-                    width: 150.0,
+            Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                Container(
+                  width: 130,
+                  height: 150,
+                  child: FutureBuilder(
+                    future: _initializeVideoPlayerFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return Center(
+                          child: AspectRatio(
+                            aspectRatio: _controller.value.aspectRatio,
+                            child: VideoPlayer(_controller),
+                          ),
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    },
                   ),
                 ),
-              ),
+                CircleAvatar(
+                    radius: 25,
+                     backgroundColor: Colors.transparent,
+                    backgroundImage: AssetImage(Res.playicon)
+                ),
+
+              ],
+
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:video_player/video_player.dart';
 import 'package:videoshoping/appcolor/Constant.dart';
 import 'package:videoshoping/res.dart';
+import 'package:videoshoping/screens/registerandlogin/login.dart';
 
 class Product_details extends StatefulWidget {
   @override
@@ -10,6 +12,25 @@ class Product_details extends StatefulWidget {
 }
 final appclr = Constant.appColor;
 class _Product_detailsState extends State<Product_details> {
+
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  void initState() {
+//    _controller = VideoPlayerController.network(
+//        "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
+    _controller = VideoPlayerController.asset("assets/videos/vid2.mp4");
+    _initializeVideoPlayerFuture = _controller.initialize();
+    _controller.setLooping(true);
+    _controller.setVolume(1.0);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +148,7 @@ class _Product_detailsState extends State<Product_details> {
               height: 50.0,
               child: RaisedButton(
                 onPressed: () {
+                  Navigator.push(context,   MaterialPageRoute(builder: (context)=>Login_page()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -143,17 +165,52 @@ class _Product_detailsState extends State<Product_details> {
               ),
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: Image.asset(
-              Res.nfcap,
-              height: 200.0,
-              width: 150.0,
-            ),
+          Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                width: 200,
+                height: 200,
+                child: FutureBuilder(
+                  future: _initializeVideoPlayerFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Center(
+                        child: AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        ),
+                      );
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                ),
+              ),
+              FloatingActionButton(
+                backgroundColor: Colors.transparent,
+                onPressed: () {
+                  setState(() {
+                    if (_controller.value.isPlaying) {
+                      _controller.pause();
+                    } else {
+                      _controller.play();
+                    }
+                  });
+                },
+                child:
+                Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
+              )
+            ],
+
           ),
+
           SizedBox(height: 25,),
         ],
       ),
     );
   }
+
 }

@@ -23,6 +23,7 @@ dependencies:
   video_player: ^0.10.11+1
   youtube_player_flutter: ^6.1.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -41,6 +42,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/videos/vid1.mp4
+    - assets/videos/vid2.mp4
+    - assets/videos/vid3.mp4
+    - assets/videos/vid4.mp4
     - images/amazon.png
     - images/background.png
     - images/box.png
@@ -48,6 +53,7 @@ flutter:
     - images/livelogo.png
     - images/nfcap.png
     - images/paypal.png
+    - images/playicon.png
     - images/profilepic.png
     - images/review.png
     - images/sale.jpg
@@ -80,3 +86,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+-assets/flutter_assets/assets/river:
+  m4a:
